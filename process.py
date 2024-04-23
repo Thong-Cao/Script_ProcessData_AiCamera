@@ -15,12 +15,12 @@ df = pd.read_csv('binhchieu2204.csv')
 print(df)
 camera_name = 'binhchieu2204'
 for i in range(len(df)):
-    id = df[0][i]
-    index = c
+    id = df['id'][i]
+    index = i
     path = "/home/pc/storage/clips/"
     img = camera_name +'-'+id+'.jpg'
     img_snapshot = path + img
-    ocr = df[1][i]
+    ocr = df['plate'][i]
 
     worksheet.write(f"A{index+2}", ocr)
     worksheet.insert_image(f"B{index+2}", img_snapshot, {"x_scale": 0.3, "y_scale": 0.3})
