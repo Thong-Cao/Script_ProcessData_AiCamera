@@ -16,7 +16,6 @@ FROM
     event 
 WHERE 
     label = 'plate' 
-    AND (camera = 'ANPHU17') Remove if dont need specify camera name
     AND data->'attributes'->0->'text' IS NOT NULL
 ) TO './collected.csv' WITH CSV HEADER;
 
@@ -37,9 +36,9 @@ for i in range(len(df)):
     img_path = source_img + img_name
 
 
-    new_directory = '/home/pc/aicamera/collect_data2'
+    new_directory = '/home/pc/aicamera/collect_data4'
     print(df['plate'][i])
-    new_filename = str(df['plate'][i]) + '.jpg'
+    new_filename = str(df['plate'][i]).split('\"')[1] +"_"+str(df['start_time'][i])+ '.jpg'
 
     # Combine the new directory path with the new filename
     new_path = os.path.join(new_directory, new_filename)
